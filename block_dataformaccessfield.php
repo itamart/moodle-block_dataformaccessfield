@@ -134,7 +134,11 @@ class block_dataformaccessfield extends block_base {
         $filter = $this->get_filter($data);
 
         // If the field is not in the filter's custom search, not applicable.
-        if (!$filter->customsearch or !array_key_exists($field->id, $filter->customsearch)) {
+        if (!$searchfields = $filter->get_custom_search_fields()) {
+            return false;
+        }
+
+        if (!array_key_exists($field->id, $searchfields)) {
             return false;
         }
 

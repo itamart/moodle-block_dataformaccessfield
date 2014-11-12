@@ -49,6 +49,8 @@ class block_dataformaccessfield_edit_form extends block_edit_form {
             // Custom search.
             if ($customsearch = $ruleformhelper::get_custom_search_from_form($data, $this->block->dataformid)) {
                 $data->config_customsearch = $customsearch;
+            } else {
+                $data->config_customsearch = null;
             }
         }
 
