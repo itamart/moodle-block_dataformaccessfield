@@ -23,20 +23,28 @@
 class block_dataformaccessfield_edit_form extends block_edit_form {
 
     protected function specific_definition($mform) {
-        $ruleformhelper = '\mod_dataform\pluginbase\dataformruleform_helper';
+        $ruleformhelper = '\mod_dataform\helper\ruleform';
+        $filterformhelper = '\mod_dataform\helper\filterform';
 
+        // Common elements.
         $ruleformhelper::general_definition($mform, $this->block->dataformid, 'config_');
 
+        // Fields selector.
         $mform->addElement('header', 'fieldshdr', get_string('fields', 'dataform'));
         $mform->setExpanded('fieldshdr');
         $ruleformhelper::fields_selection_definition($mform, $this->block->dataformid, 'config_');
 
+        // Filter.
         $mform->addElement('header', 'filterhdr', get_string('filter', 'dataform'));
         $mform->setExpanded('filterhdr');
 
+        // Filter selector.
+        $filterformhelper::filter_selection_definition($mform, $this->block->dataformid, 'config_');
+
+        // Custom search.
         $config = $this->block->config;
         $customsearch = !empty($config->customsearch) ? $config->customsearch : null;
-        $ruleformhelper::entries_filter_definition($mform, $this->block->dataformid, $customsearch, 'config_');
+        $filterformhelper::custom_search_definition($mform, $this->block->dataformid, $customsearch);
     }
 
     /**
@@ -45,9 +53,9 @@ class block_dataformaccessfield_edit_form extends block_edit_form {
     public function get_data() {
 
         if ($data = parent::get_data()) {
-            $ruleformhelper = '\mod_dataform\pluginbase\dataformruleform_helper';
+            $filterformhelper = '\mod_dataform\helper\filterform';
             // Custom search.
-            if ($customsearch = $ruleformhelper::get_custom_search_from_form($data, $this->block->dataformid)) {
+            if ($customsearch = $filterformhelper::get_custom_search_from_form($data, $this->block->dataformid)) {
                 $data->config_customsearch = $customsearch;
             } else {
                 $data->config_customsearch = null;
@@ -65,7 +73,7 @@ class block_dataformaccessfield_edit_form extends block_edit_form {
             return $errors;
         }
 
-        $ruleformhelper = '\mod_dataform\pluginbase\dataformruleform_helper';
+        $ruleformhelper = '\mod_dataform\helper\ruleform';
         $errors = $ruleformhelper::general_validation($data, $files, 'config_');
 
         return $errors;
