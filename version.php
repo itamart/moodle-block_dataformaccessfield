@@ -16,15 +16,15 @@
 
 /**
  * @package block_dataformaccessfield
- * @copyright 2015 Itamar Tzadok {@link http://substantialmethods.com}
+ * @copyright 2016 Itamar Tzadok {@link http://substantialmethods.com}
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') or die;
 
 $plugin->component = 'block_dataformaccessfield';
-$plugin->release  = '2.9';
-$plugin->version = 2015051100;
-$plugin->requires = 2015051100;
+$plugin->release  = '3.0.4';
+$plugin->version = 2015111604;
+$plugin->requires = 2015111600;
 $plugin->maturity = MATURITY_STABLE;
-$plugin->dependencies = array('mod_dataform' => 2015051100);
+$plugin->dependencies = array('mod_dataform' => 2015111604);

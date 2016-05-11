@@ -5,8 +5,8 @@ The field access rules allow for controlling access to fields that have a specif
 
 Release:
 ------------
-2.9.0
+3.0.4
 
 Documentation:
 --------------
-http://docs.moodle.org/29/en/Dataform_field_access_block
+http://docs.moodle.org/30/en/Dataform_field_access_block
